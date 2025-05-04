@@ -1,0 +1,81 @@
+/*
+* Color pallette:
+* #d9aaef
+* #eaaaef
+* #efaae3
+* #efaad1
+* #efaac0
+* #efaaaf
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&family=Alex+Brush&family=Allura&family=Dancing+Script&display=swap');
+
+body {
+    background: #d9aaef; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to right top,
+        #d9aaef
+        #eaaaef
+        #efaae3
+        #efaad1
+        #efaac0
+        #efaaaf
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right top,
+        #d9aaef
+        #eaaaef
+        #efaae3
+        #efaad1
+        #efaac0
+        #efaaaf
+    );
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+#container {
+    margin: 0px;
+}
+
+.slider-area {
+    position: absolute;
+    margin-top: 0px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    min-width: 160vw;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider_caption {
+    min-height: 100vh;
+    max-width: 100vw;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+}
+
+h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    color: black;
+}
+
+
+#card_btn {
+    margin-top: 50px;
+    max-width: 200px;
+    cursor: pointer;
+    --animate-duration: 1700ms;
+}
