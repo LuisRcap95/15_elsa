@@ -1,6 +1,6 @@
-const video = document.querySelector('#framevideo');
+/* const video = document.querySelector('#framevideo');
 video.currentTime = 3;
-const container = document.querySelector('#container');
+
 // Video set display size
 if(window.matchMedia("(max-width: 767px)").matches) {
     // change style left
@@ -11,7 +11,7 @@ if(window.matchMedia("(max-width: 767px)").matches) {
     video.width = window.innerWidth;
     video.height = window.innerHeight;
 }
-let interactions = 0;
+
 // pouse video on its second 14
 video.addEventListener('timeupdate', function(e) {
     e.preventDefault();
@@ -29,43 +29,77 @@ video.addEventListener('timeupdate', function(e) {
         interactions = 2;
         changeSlide();
     }
-});
+}); */
+
+const container = document.querySelector('#container');
+const scene = document.querySelector('.scene');
+
+const star2D = document.querySelector('.twoD');
+const star3D = document.querySelector('.threeD');
+
+let interactions = 0;
 
 const cuteTexts = [
     `<div class="slider_caption">
-        <span class="span-medieval">¡Hola! me alegro de verte. Parece que te han enviado la invitación para el cumpleaños de Sofi 👀
-        eso signinfica que eres una persona importante y especial para ella 🥰<br><br>
-        La fiesta será el día 4 de enero a las 5:00pm en la dirección<br>
-        <a href="https://maps.app.goo.gl/fCu4U66y1sVXphgn8">Av. Girasol 1, Las Huertas 1ra Secc, 53427 Naucalpan de Juárez, Méx.</a><br>
-        Nota: Si puedes traer un regalo 🎁 eso le encantaría, por favor no faltes</span>
+        <span class="span-caption">
+            Estás invitado a lo XV de Elsa María este
+            18 de octubre.<br>
+            Misa: 05:00 pm en  
+            <a href="https://maps.app.goo.gl/WJYXUUS8hTP89TMa7" target="_blank">
+                Iglesia de San Miguel
+            </a><br>
+            Recepción: al finalizar la misa de acción de gracias los esperamos en <a href="https://maps.app.goo.gl/dC2xjGSCD4npPcf76" target="_blank">
+                Calle Girasol, Las Huertas 1ra Secc, 53427 Naucalpan de Juárez
+            </a>
+        </span>
         <div class="btn-container">
-            <button id="si" >¿Confirmas asistencia?</button>
-            <button id="no" >No, gracias</button>
+            <button id="si">
+                ¿Confirmas asistencia?
+                <img src="assets/media/yes-image.png" alt="yes" class="yes-image">
+            </button>
+                
+            <button id="no" >
+                No, gracias
+                <img src="assets/media/no-image.png" alt="no" class="no-image">
+            </button>
         </div>
     </div>`,
     `<div class="slider_caption">
-    <span class="span-medieval">¡Qué maravillosa noticia! estamos encantados de poder verte para el cumpleaños de Sofi<br><br>
-    Por favor ayúdanos a confirmar tu asistencia añadiendo tus datos en el siguiente formulario. 😊
+    <span class="span-caption">
+        ¡Qué bueno saber que aceptas la invitación! Por favor confirma tu asistencia llenando el
+        siguiente formulario.<br><br>
     </span>
-    <form id="inviteForm">
-        <input class="pap-input" type="text" placeholder="Nombre" id="nombre" required />
-        <input class="pap-input" type="tel" placeholder="Teléfono" id="telefono" required />
-        <input class="pap-input" type="number" placeholder="Acompañantes (0 si no)" id="acompanantes" required />
-        <button class="pap-btn" id="enviar" >Enviar</button>
-    </form></div>`,
-    `<div class="slider_caption">
-    <sapn class="span-medieval">
-        Entiendo, es triste no poder verte ahí ese día... 😢<br><br><br>
-        pero si cambias de opinión puedes confirmar tu asistencia
-        usando el mismo enlace de antes.
-    </span>
+    <div class="form-div">
+        <img src="assets/media/form-side.png" alt="form-aside" height="300px" class="form-aside">
+        <span class="fill-span"></span>
+        <form id="inviteForm">
+            <input class="pap-input" type="text" placeholder="Nombre" id="nombre" required />
+            <input class="pap-input" type="tel" placeholder="Teléfono" id="telefono" required />
+            <input class="pap-input" type="number" placeholder="Acompañantes (0 si no)" id="acompanantes" required />
+            <button class="pap-btn" id="enviar" >Enviar</button>
+        </form>
+    </div>
     </div>`,
     `<div class="slider_caption">
-    <sapn class="span-medieval">
-        ¡Gracias por confirmar tu asistencia, esperamos verte en la fiesta!<br><br>🎉🥳🎆🎊
+    <span class="span-caption">
+        Qué pena no poder verte ese día... 😢<br><br><br>
+        pero si cambias de opinión puedes volver a usar el enlace de la invitación
+        para confirmar tu asistencia.
     </span>
+    <img src="assets/media/not-accept.png" alt="no-accept" class="not-accept">
+    </div>`,
+    `<div class="slider_caption">
+    <sapn class="span-caption">
+        ¡Gracias por confirmar tu asistencia!<br><br>
+        Sugerencia de regalo: Para mí el mejor regalo es tu presencia este día tan epecial,
+        pero si quieres darme un presente y no sabes qué podrías regalarme; puedes hacerlo dentro
+        de un sobre. <br>
+    </span>
+    <img src="assets/media/final-accept.png" alt="no-accept" class="final-image">
     </div>`,
 ]
+
+changeSlide();
 
 function changeSlide () {
     const sliderArea = document.createElement('div');
@@ -85,18 +119,50 @@ function changeSlide () {
 function addFirstListenerButtons () {
     const buttonSi = document.querySelector('#si');
     const buttonNo = document.querySelector('#no');
-    buttonSi.addEventListener( 'click', (e) => {
+    buttonSi.addEventListener( 'click', async (e) => {
         e.preventDefault();
-        video.play();
-        video.currentTime = 26;
+        interactions++;
+        star2D.classList.add('animate__slow');
+        star3D.classList.add('animate__slow');
+        star2D.classList.add('animate__fadeOutUpBig');
+        star3D.classList.add('animate__fadeOutUpBig');
+        
         container.removeChild( document.querySelector('.slider-area') );
+        scene.removeChild( star2D );
+        await new Promise( resolve => setTimeout(() => {
+            resolve();
+        }, 500));
+        scene.removeChild( star3D );
+        
+
+        star2D.classList.remove('animate__fadeOutUpBig');
+        star3D.classList.remove('animate__fadeOutUpBig');
+        
+        star2D.classList.add('animate__fadeInDownBig');
+        star3D.classList.add('animate__fadeInDownBig');
+        scene.appendChild( star3D );
+        setTimeout(() => {
+            scene.appendChild( star2D );
+            changeSlide();
+        }, 500);
+        
     })
 
-    buttonNo.addEventListener( 'click', (e) => {
+    buttonNo.addEventListener( 'click', async (e) => {
         e.preventDefault();
+        star2D.classList.add('animate__slower');
+        star3D.classList.add('animate__slower');
+        star2D.classList.add('animate__fadeOutDownBig');
+        star3D.classList.add('animate__fadeOutDownBig');
         container.removeChild( document.querySelector('.slider-area') );
-        video.currentTime = 48;
-        video.play();
+        await new Promise( resolve => setTimeout(() => {
+            scene.removeChild( star2D );
+            scene.removeChild( star3D );
+            resolve();
+        }, 500));
+
+        interactions = 2;
+        changeSlide();
     })
 }
 
@@ -145,6 +211,8 @@ function addFormListener() {
                     sliderArea.innerHTML = cuteTexts[3];
                     sliderArea.className = `slider-area animate__animated animate__fadeIn animate__delay-2s`;
                     container.appendChild( sliderArea );
+                    interactions = 3;
+                    changeSlide();
                 },500);
             }
         }).catch( err => {
