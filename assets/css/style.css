@@ -72,6 +72,13 @@ h2 {
     color: #ead2d4;
 }
 
+h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 35px;
+    font-weight: 700;
+    color: #6d5577;
+}
+
 
 #card_btn {
     margin-top: 50px;
