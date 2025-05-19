@@ -1,36 +1,3 @@
-/* const video = document.querySelector('#framevideo');
-video.currentTime = 3;
-
-// Video set display size
-if(window.matchMedia("(max-width: 767px)").matches) {
-    // change style left
-    video.style.left = '-50vw';
-    video.width = window.innerWidth * 2;
-    video.height = window.innerHeight;
-} else {
-    video.width = window.innerWidth;
-    video.height = window.innerHeight;
-}
-
-// pouse video on its second 14
-video.addEventListener('timeupdate', function(e) {
-    e.preventDefault();
-    if (video.currentTime >= 14.2 && interactions === 0) {
-        video.pause();
-        changeSlide();
-        interactions++;
-    } else if(video.currentTime >= 29.5 && video.currentTime < 48 && interactions === 1) {
-        video.pause();
-        interactions = 1;
-        changeSlide();
-        interactions++;
-    } else if (video.currentTime >= 54.5 && interactions === 1) {
-        video.pause();
-        interactions = 2;
-        changeSlide();
-    }
-}); */
-
 const container = document.querySelector('#container');
 const scene = document.querySelector('.scene');
 
@@ -167,7 +134,7 @@ function addFirstListenerButtons () {
 }
 
 function addFormListener() {
-    const url = "https://9fgcaoptb3.execute-api.us-west-1.amazonaws.com/Prod"
+    const url = "https://6yf3yxoyh4.execute-api.us-west-1.amazonaws.com/Prod"
     const btnSubmit = document.querySelector('#enviar');
     btnSubmit.addEventListener('click', (e) => {
         e.preventDefault();
