@@ -73,15 +73,16 @@ h2 {
 }
 
 h3 {
+    color: #6d5577;
     font-family: 'Great Vibes', cursive;
     font-size: 35px;
     font-weight: 700;
-    color: #6d5577;
+    margin-top: 40px;
 }
 
 
 #card_btn {
-    margin-top: 50px;
+    margin-top: 0px;
     max-width: 200px;
     cursor: pointer;
     --animate-duration: 1700ms;
